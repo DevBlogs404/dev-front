@@ -1,9 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
 import {BiUser,BiSearch,BiHeart,BiCart} from 'react-icons/all';
 import logo from '../assets/Logo.png'
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <div className='w-full h-20 flex items-center justify-between p-4 shadow-md'>
         <div>
@@ -17,7 +18,7 @@ const Navbar = () => {
             <Link to='/contact' className='text-black text-lg hover:text-pink-400'>Contact</Link>
         </div>
         <div className='flex items-center justify-center gap-6 h-full mx-4'>
-            <span className='text-pink-400 font-bold'><BiUser className='inline-block text-pink-400 mr-2' size={20}  />Login/Register</span>
+            <span className='text-pink-400 font-bold cursor-pointer' onClick={()=>navigate('/SignIn')}><BiUser className='inline-block text-pink-400 mr-2' size={20} />Login/Register</span>
              <span><BiSearch className='inline-block text-pink-400' size={20}  /></span>
             <span><BiCart className='inline-block text-pink-400' size={20} /></span>
             <span><BiHeart className='inline-block text-pink-400'size={20}  /></span>
