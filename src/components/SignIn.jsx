@@ -1,42 +1,102 @@
-import React,{ useState }from 'react'
-import {Formik,Form} from 'formik'
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+// import {Formik,Form} from 'formik'
 import {registerSchema,loginSchema} from '../validation/validation'
 
 const SignIn = () => {
-  const handleSubmit =(values)=>{
-      console.log(values);
-  }
+  const [signUp, setSignUp] = useState(true);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  // const sendData = async ()=>{
+  //   let response = await fetch("http://localhost:6969/api/v1/register",{
+  //     method:"POST",
+  //     body: values,
+  //     headers:{
+  //       contentType:"application/json"
+  //     }
+  //   })
+  //   response = await response.json()
+  //   console.log(response);
+  // }
   return (
-    <div className='flex flex-col h-full gap-2 p-2 relative md:flex-row md:p-10 md:gap-10'>
-        <Formik 
-        initialValues={{
-            name:"",
-            email:"",
-            password:""
-        }}
-        validationSchema={registerSchema}
-        onSubmit={handleSubmit}
+    <div className="flex flex-col items-center justify-center h-full gap-2 p-2 relative md:flex-row md:p-10 md:gap-10">
+      <form noValidate onSubmit={handleSubmit((data) => console.log(data))}>
+        <div>
+          {signUp && (
+            <input
+              type="text"
+              {...register("name", {
+                required: "Name is required",
+                maxLength: 20,
+              })}
+              placeholder="Enter Name.."
+              className="mt-2  p-2 rounded-lg text-black bg-gray-200 w-full"
+            />
+          )}
+        </div>
+        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+        <div>
+          <input
+            type="email"
+            {...register("email", { required: "Email is required",
+            pattern: {
+              value:/\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/,
+              message: 'E-mail not valid' 
+            }
+           })}
+            placeholder="Enter email.."
+            className=" mt-2 p-2 rounded-lg text-black bg-gray-200 w-full"
+          />
+        </div>
+        {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+        <div>
+          <input
+            type="password"
+            {...register("password", {
+              required: "Password cannot be empty",
+              pattern :{
+                value:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/,
+                message:"Password must contain 1 UpperCase letter"
+              },
+              minLength: { value: 8, message: "password too short" },
+              maxLength: { value: 16, message: "password too long" },
+            })}
+            placeholder="Enter password.."
+            className="mt-2 p-2 rounded-lg text-black bg-gray-200 w-full"
+          />
+        </div>
+        {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
+        <div>
+          <input
+            type="password"
+            {...register("confirmPassword", {
+              required: "Password cannot be empty",
+              validate: (value, formValues) => value === formValues.password || "password does not match",
+              minLength: { value: 8, message: "password too short" },
+              maxLength: { value: 16, message: "password too long" },
+            })}
+            placeholder="Confirm password.."
+            className="mt-2 p-2 rounded-lg text-black bg-gray-200 w-full"
+          />
+        </div>
+        {errors.confirmPassword && <p className='text-red-500'>{errors.confirmPassword.message}</p>}
+        <button
+          type="submit"
+          className="bg-black w-full text-white p-2 rounded-lg mt-2"
         >
-          <Form>
-            <div>
-            <input type="text" name='name' placeholder='Enter your Name' className='mt-2  p-2 rounded-lg text-black bg-gray-200 w-full' />
-            </div>
-            <div>
-            <input type="email" name='email' placeholder='Enter your email' className=' mt-2 p-2 rounded-lg text-black bg-gray-200 w-full' />
-            </div>
-            <div>
-            <input type="password" name='password' placeholder='Enter your password' className='mt-2 p-2 rounded-lg text-black bg-gray-200 w-full' />
-            </div>
-            <button type='submit' className='bg-black w-full text-white p-2 rounded-lg mt-2'>Sign Up</button>
-          </Form>
-        </Formik>
+          {signUp ? "Sign Up" : "Log In"}
+        </button>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
-
-
+export default SignIn;
 
 // const [title,setTitle] = useState("")
 //   const [desc,setDesc] = useState("")
@@ -52,7 +112,7 @@ export default SignIn
 //     formData.append('price',rating)
 //     formData.append('photo',photo)
 //     console.log(formData);
-    
+
 //     let result = await fetch('http://localhost:4000/upload',{
 //       method:"post",
 //       body:formData,
