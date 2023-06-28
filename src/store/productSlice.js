@@ -31,13 +31,35 @@ export const fetchProducts = () =>{
     return async function fetchProductThunk (dispatch,getState){
         dispatch(setStatus(STATUS.LOADING))
             try {
-                let data = await fetch("http://localhost:6969/products")
+                let data = await fetch("http://localhost:6969/api/products/get-products")
                 data = await data.json()
                 dispatch(setProducts(data))
                 dispatch(setStatus(STATUS.IDLE))
             } catch (error) {
-                console.log(error);
+                // console.log(error);
                 dispatch(setStatus(STATUS.ERROR))
             }
     }
 }
+
+export const fetchProductsByCategory = ( category )=>{
+    return async function fetchProductsByCategoryThunk(dispatch,getState){
+        dispatch(setStatus(STATUS.LOADING))
+        try {
+            // let url;
+            // if(category === 'all'){
+            //     url = 'http://localhost:6969/api/products/get-products'
+            // }else{
+            //     url = `http://localhost:6969/api/products/get-products-by-category?category=${category}`
+            // }
+            let data = await fetch(`http://localhost:6969/api/products/get-products-by-category?category=${category}`)
+            data  = await data.json()
+            // console.log(data);
+            dispatch(setProducts(data))
+            dispatch(setStatus(STATUS.IDLE))
+        } catch (error) {
+            // console.log(error);
+            dispatch(setStatus(STATUS.ERROR))
+        }
+    }
+} 

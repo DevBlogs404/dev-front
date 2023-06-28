@@ -4,9 +4,9 @@ import draw from '../assets/draw.png'
 
 const Contact = () => {
   return (
-    <div className='flex flex-col h-full gap-2 p-2 relative md:flex-row md:p-10 md:gap-10'>
+    <div className='flex flex-col-reverse h-full gap-2 p-2 relative lg:flex-row lg:p-10 lg:gap-10'>
    <div className='flex-1 h-full '>
-    <form action="" method='post' className='flex p-6 flex-col items-center justify-center gap-8 md:p-20'>
+    <form action="" method='post' className='flex p-6 flex-col items-center justify-center gap-8 lg:p-20'>
         <h1 className='w-full text-left text-2xl font-semibold'>CONTACT US</h1>
         <p className='w-full text-left'>Feel free to contact us any time. We will get back to you as soon as we can</p>
         <input type="text" name="name" id="name" placeholder='Name' className='p-2 rounded-lg text-black bg-gray-200 w-full' />
@@ -15,7 +15,7 @@ const Contact = () => {
         <button type='button' className='bg-black w-full text-white p-2 rounded-lg'>Send</button>
     </form>
    </div>
-   <div className='flex-1 bg-pink-400 flex items-start justify-center p-10 flex-col gap-4 md:my-20 md:gap-8 md:p-20'>
+   <div className='flex-1 bg-pink-400 flex relative items-start justify-center p-10 flex-col gap-4 lg:my-20 lg:gap-8 lg:p-20'>
     <div className='flex gap-6 md:gap-10'>
     <BiLocationPlus size={20}  className='inline-block text-white'/>
     <span className='text-white'> 14 Green Road St.</span>
@@ -37,8 +37,8 @@ const Contact = () => {
         <BsTwitter size={20}  className='inline-block text-white'/>
         <FaFacebook  size={20} className='inline-block  text-white'/>
     </div>
+    <img src={draw} alt="kit" className='hidden md:block absolute bottom-0 right-0' />
    </div>
-   <img src={draw} alt="kit" className='hidden md:block absolute bottom-0 right-0' />
     </div>
   )
 }

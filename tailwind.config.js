@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage:{
+        'aboutBg' :"url('../src/assets/aboutImage.png')"
+      },
+      textColor:{
+        'definedGrey':"#737373"
+      }
     },
   },
   plugins: [],
