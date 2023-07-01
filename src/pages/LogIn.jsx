@@ -7,17 +7,19 @@ const LogIn = () => {
   const navigate = useNavigate();
 
   const logInUser = async (userData) => {
-    let { email, password } = userData;
     let response = await fetch("http://127.0.0.1:6969/api/v1/auth/login", {
       method: "POST",
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(userData),
       headers: {
         "content-type": "application/json",
       },
     });
     response = await response.json();
-    localStorage.setItem("token", JSON.stringify(response.token));
-    navigate("/");
+    const token = response.token;
+    if (token) {
+      localStorage.setItem("token", JSON.stringify(response.token));
+      navigate("/");
+    }
   };
 
   const {
