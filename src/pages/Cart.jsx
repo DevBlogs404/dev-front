@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { BsTruck } from "react-icons/all";
 import { useSelector, useDispatch } from "react-redux";
-import { remove, totalPrice, clear } from "../store/cartSlice";
+import { removeItemFromCart, totalPrice, clear } from "../store/cartSlice";
 import CartCard from "../components/CartCard";
+import { toast, Toaster } from "react-hot-toast";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -22,13 +23,13 @@ const Cart = () => {
   }, [cart]);
 
   const removeItem = (itemId) => {
-    dispatch(remove(itemId));
+    dispatch(removeItemFromCart(itemId));
+    toast.success("item removed successfully");
   };
-
-
   const clearCart = () => {
     dispatch(clear());
     localStorage.removeItem("cartItems");
+    toast.error("cart is empty");
     navigate("/products/all");
   };
 
@@ -42,20 +43,23 @@ const Cart = () => {
               className="cursor-pointer"
               onClick={() => navigate("/products/all")}
             />{" "}
-            Order Summary - {totalQuantity}
-            {totalQuantity > 1 ? " items" : " item"}
+            Order Summary - {cart.cartItems.length}
+            {cart.cartItems.length > 1 ? " items" : " item"}
           </div>
-         {cart.cartItems.length > 0 && <button
-            className="block px-5 py-1 text-xl text-white bg-pink-400 rounded "
-            onClick={clearCart}
-          >
-            Clear
-          </button>}
+          {cart.cartItems.length > 0 && (
+            <button
+              className="block px-5 py-1 text-xl text-white bg-pink-400 rounded "
+              onClick={clearCart}
+            >
+              Clear
+            </button>
+          )}
         </div>
         {cart.cartItems.map((item) => {
           return (
-            <CartCard item={item} removeItem={removeItem} key={item._id} /> )
-          })}
+            <CartCard item={item} removeItem={removeItem} key={item._id} />
+          );
+        })}
       </div>
 
       <div className="w-full h-full flex-1">
@@ -70,8 +74,8 @@ const Cart = () => {
           </div>
           <div className="flex flex-col gap-8">
             <h3 className="font-bold uppercase text-xl">
-              Price Details ({totalQuantity}{" "}
-              {totalQuantity > 1 ? " items" : " item"})
+              Price Details ({cart.cartItems.length}{" "}
+              {cart.cartItems.length > 1 ? " items" : " item"})
             </h3>
             <div className="flex items-center justify-between">
               <span>Total MRP</span>
@@ -101,6 +105,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

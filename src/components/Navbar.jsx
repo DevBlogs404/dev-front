@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   BiUser,
-  BiSearch,
+  // BiSearch,
   BiHeart,
   BiCart,
   BiLogOut,
@@ -16,7 +16,6 @@ import {
 import logo from "../assets/Logo.svg";
 
 const Navbar = () => {
-  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -48,6 +47,7 @@ const Navbar = () => {
           alt="logo"
           className="w-20 object-cover cursor-pointer"
           onClick={() => navigate("/")}
+          loading="lazy"
         />
       </Link>
       <nav className="hidden md:flex items-center justify-center gap-8 w-full h-full">
@@ -94,7 +94,7 @@ const Navbar = () => {
         {isMenuOpen ? <BsX size={40} /> : <BiMenu size={40} />}
       </button>
       <div className="md:hidden">
-        <Link to='/'>
+        <Link to="/">
           <h1 className="text-4xl font-bold text-pink-400 ml-4">Avira</h1>
         </Link>
       </div>
@@ -193,7 +193,7 @@ const Navbar = () => {
               ) : (
                 <li>
                   <Link
-                    to="/login"
+                    to="/register"
                     className="flex items-center justify-start gap-6 text-white text-3xl"
                     onClick={handleOptionClick}
                   >
@@ -206,16 +206,10 @@ const Navbar = () => {
           </div>
         </div>
       )}
-    
+
       <div className="flex items-center justify-center gap-4  h-full md:mx-4 md:gap-6">
-        {token ? 
+        {token ? (
           <>
-            <span>
-              <BiSearch
-                className="hidden md:inline-block text-pink-400 cursor-pointer"
-                size={30}
-              />
-            </span>
             <span>
               <BiCart
                 className="inline-block text-pink-400 cursor-pointer"
@@ -237,14 +231,14 @@ const Navbar = () => {
               />
             </span>
           </>
-          :
+        ) : (
           <span
-          className="block text-pink-400 font-bold cursor-pointer"
-          onClick={() => navigate("/login")}
-        >
-          <BiUser className="inline-block text-pink-400 md:mr-2" size={30} />
-        </span>
-        }
+            className="block text-pink-400 font-bold cursor-pointer"
+            onClick={() => navigate("/login")}
+          >
+            <BiUser className="inline-block text-pink-400 md:mr-2" size={30} />
+          </span>
+        )}
       </div>
     </header>
   );

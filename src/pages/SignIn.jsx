@@ -22,9 +22,8 @@ const SignIn = () => {
       },
     });
     response = await response.json();
-    console.log(response);
 
-    navigate("/");
+    navigate("/login");
   };
   return (
     <div className="flex flex-col w-full h-full gap-4 p-4 md:flex-row md:p-10 md:gap-10">
@@ -33,6 +32,7 @@ const SignIn = () => {
           src={LeftSection}
           alt="LeftSection"
           className="h-full w-full object-cover"
+          loading="lazy"
         />
       </div>
       <div className="flex-1 h-full">

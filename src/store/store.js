@@ -1,16 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit'
-import cartReducer, { totalPrice } from './cartSlice'
-import productReducer from './productSlice';
-
+import { configureStore } from "@reduxjs/toolkit";
+import cartReducer, { totalPrice } from "./cartSlice";
+import productReducer from "./productSlice";
 
 const store = configureStore({
-    reducer:{
-        cart:cartReducer,
-        product:productReducer
-    }
+  reducer: {
+    cart: cartReducer,
+    product: productReducer,
+  },
 });
 
-store.dispatch(totalPrice())
-
+store.dispatch(totalPrice());
 
 export default store;

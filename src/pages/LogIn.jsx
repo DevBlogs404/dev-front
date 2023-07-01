@@ -34,6 +34,7 @@ const LogIn = () => {
           src={LeftSection}
           alt="LeftSection"
           className="h-full w-full object-cover"
+          loading="lazy"
         />
       </div>
       <div className="flex-1 h-full w-full">
@@ -43,7 +44,7 @@ const LogIn = () => {
           className="flex p-2 flex-col items-center justify-center gap-6 md:p-4 md:items-start"
         >
           <h1 className="w-full text-left text-3xl font-semibold">
-            Nice to see you again !
+            Log In to your account !
           </h1>
           <input
             type="email"
