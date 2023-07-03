@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../store/cartSlice";
@@ -8,8 +8,9 @@ import {
   fetchProductsByCategory,
 } from "../store/productSlice";
 import { Toaster, toast } from "react-hot-toast";
-import ProductCard from "../components/ProductCard";
 import { BiSearch } from "react-icons/all";
+import ProductCard from "../components/ProductCard";
+
 
 const Products = () => {
   const [search, setSearch] = useState("");
@@ -68,7 +69,7 @@ const Products = () => {
             product.description.toLowerCase().includes(search)
         )
         .map((product) => (
-          <ProductCard
+            <ProductCard
             product={product}
             addToCart={addItem}
             key={product._id}

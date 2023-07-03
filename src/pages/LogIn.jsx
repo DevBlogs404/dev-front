@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import LeftSection from "../assets/LeftSection.png";
 import { Link, useNavigate } from "react-router-dom";
+import {toast, Toaster} from 'react-hot-toast'
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -19,7 +20,10 @@ const LogIn = () => {
     if (token) {
       localStorage.setItem("token", JSON.stringify(response.token));
       navigate("/");
+    }else{
+      toast.error("No User Found")
     }
+    
   };
 
   const {
@@ -99,6 +103,7 @@ const LogIn = () => {
           </Link>
         </p>
       </div>
+      <Toaster />
     </div>
   );
 };

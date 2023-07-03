@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { BsTruck } from "react-icons/all";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItemFromCart, totalPrice, clear } from "../store/cartSlice";
-import CartCard from "../components/CartCard";
 import { toast, Toaster } from "react-hot-toast";
+import CartCard from "../components/CartCard";
 
 const Cart = () => {
   const navigate = useNavigate();
