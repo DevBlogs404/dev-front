@@ -30,7 +30,7 @@ export const fetchProducts = () => {
   return async function fetchProductThunk(dispatch, getState) {
     dispatch(setStatus(STATUS.LOADING));
     try {
-      let data = await fetch("http://localhost:6969/api/products/get-products");
+      let data = await fetch("http://dev-back.vercel.app/api/products/get-products");
       data = await data.json();
       dispatch(setProducts(data));
       dispatch(setStatus(STATUS.IDLE));
@@ -45,7 +45,7 @@ export const fetchProductsByCategory = (category) => {
     dispatch(setStatus(STATUS.LOADING));
     try {
       let data = await fetch(
-        `http://localhost:6969/api/products/get-products-by-category?category=${category}`
+        `http://dev-back.vercel.app/api/products/get-products-by-category?category=${category}`
       );
       data = await data.json();
 
