@@ -14,7 +14,7 @@ const SignIn = () => {
 
   const registerUser = async (userData) => {
     let { email, password } = userData;
-    let response = await fetch("http://127.0.0.1:6969/api/v1/auth/register", {
+    let response = await fetch("https://dev-back.vercel.app/api/v1/auth/register", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: {

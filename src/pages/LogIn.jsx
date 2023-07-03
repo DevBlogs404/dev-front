@@ -8,7 +8,7 @@ const LogIn = () => {
   const navigate = useNavigate();
 
   const logInUser = async (userData) => {
-    let response = await fetch("http://127.0.0.1:6969/api/v1/auth/login", {
+    let response = await fetch("https://dev-back.vercel.app/api/v1/auth/login", {
       method: "POST",
       body: JSON.stringify(userData),
       headers: {
