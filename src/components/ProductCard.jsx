@@ -15,7 +15,7 @@ const ProductCard = ({ product, addToCart }) => {
       className="flex flex-col items-center justify-center h-30"
       key={product._id}
     >
-      <div className="relative w-56 h-72  rounded-lg overflow-hidden transition-all hover:-translate-y-2 hover:-translate-x-2">
+      <div className="relative w-56 h-72  rounded-lg overflow-hidden transition-all md:hover:-translate-y-2 md:hover:-translate-x-2">
         <img
           src={product.images[0]}
           alt={product.title}
