@@ -21,7 +21,7 @@ const ProductCard = ({ product, addToCart }) => {
           alt={product.title}
           className="w-full h-full object-cover rounded-lg"
           loading="lazy"
-          onClick={() => navigate(`/products/:${product._id}`)}
+          onClick={() => navigate(`/product/${product._id}`)}
         />
         <div className="absolute bottom-4 left-4 flex items-center gap-1">
           <BsStarFill

@@ -26,6 +26,7 @@ export default productSlice.reducer;
 
 // thunk (basically a funtion that returns another function(usually async since we can't make async calls directly in redux))
 
+// fetch all prodcuts
 export const fetchProducts = () => {
   return async function fetchProductThunk(dispatch, getState) {
     dispatch(setStatus(STATUS.LOADING));
@@ -40,12 +41,31 @@ export const fetchProducts = () => {
   };
 };
 
+// fetch products category-wise
 export const fetchProductsByCategory = (category) => {
   return async function fetchProductsByCategoryThunk(dispatch, getState) {
     dispatch(setStatus(STATUS.LOADING));
     try {
       let data = await fetch(
         `https://dev-back.vercel.app/api/products/get-products-by-category?category=${category}`
+      );
+      data = await data.json();
+
+      dispatch(setProducts(data));
+      dispatch(setStatus(STATUS.IDLE));
+    } catch (error) {
+      dispatch(setStatus(STATUS.ERROR));
+    }
+  };
+};
+
+// fetch a single prodcut
+export const fetchSingleProduct = (productId) => {
+  return async function fetchSingleProductThunk(dispatch, getState) {
+    dispatch(setStatus(STATUS.LOADING));
+    try {
+      let data = await fetch(
+        `https://dev-back.vercel.app/api/products/get-single-product/${productId}`
       );
       data = await data.json();
 

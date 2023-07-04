@@ -55,7 +55,7 @@ const Products = () => {
             id="search"
             name="search"
             placeholder="Search product...."
-            onChange={(e) => setSearch(e.target.value.trim())}
+            onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
           />
           <div className="absolute top-3.5 right-3.5">
             <BiSearch size={30} className=" text-pink-400" />
