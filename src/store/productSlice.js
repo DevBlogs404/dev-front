@@ -60,19 +60,19 @@ export const fetchProductsByCategory = (category) => {
 };
 
 // fetch a single prodcut
-export const fetchSingleProduct = (productId) => {
-  return async function fetchSingleProductThunk(dispatch, getState) {
-    dispatch(setStatus(STATUS.LOADING));
-    try {
-      let data = await fetch(
-        `https://dev-back.vercel.app/api/products/get-single-product/${productId}`
-      );
-      data = await data.json();
+// export const fetchSingleProduct = (productId) => {
+//   return async function fetchSingleProductThunk(dispatch, getState) {
+//     dispatch(setStatus(STATUS.LOADING));
+//     try {
+//       let data = await fetch(
+//         `https://dev-back.vercel.app/api/products/get-single-product/${productId}`
+//       );
+//       data = await data.json();
 
-      dispatch(setProducts(data));
-      dispatch(setStatus(STATUS.IDLE));
-    } catch (error) {
-      dispatch(setStatus(STATUS.ERROR));
-    }
-  };
-};
+//       dispatch(setProducts(data));
+//       dispatch(setStatus(STATUS.IDLE));
+//     } catch (error) {
+//       dispatch(setStatus(STATUS.ERROR));
+//     }
+//   };
+// };

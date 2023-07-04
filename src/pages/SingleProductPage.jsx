@@ -9,13 +9,12 @@ import ProductCard from '../components/ProductCard';
 const SingleProductPage = () => {
   const { urlId } = useParams()
   console.log(urlId);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchSingleProduct(urlId))
-  }, [urlId]);
+//   const dispatch = useDispatch();
+//   useEffect(() => {
+//     dispatch(fetchSingleProduct(urlId))
+//   }, [urlId]);
 
   const {data:products} = useSelector((state) => state.product);
-    console.log(products);
 
   const addItem = (item) => {
     dispatch(addItemToCart(item));
@@ -25,7 +24,7 @@ const SingleProductPage = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       {
-        products?.map((product)=>{
+        products?.filter((product)=> product._id === urlId ).map((product)=>{
            return(
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex justify-center items-center">
