@@ -12,7 +12,7 @@ import SignIn from "./pages/SignIn";
 import LogIn from "./pages/LogIn";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
-import SingleProductPage from "./pages/SingleProductPage";
+
 
 
 function App() {
@@ -28,7 +28,6 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/about" element={<About />} />
           <Route path="/products/:category" element={<Prodcuts />} />
-          <Route path='/product/:id' element={<SingleProductPage />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>
