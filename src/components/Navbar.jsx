@@ -40,7 +40,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="w-full h-[10vh] flex items-center justify-between  md:justify-between p-4 shadow-md">
+    <header className="w-full  h-[80px]  flex items-center justify-between  md:justify-between p-4 shadow-md">
       <Link to="/" className="hidden md:block md:mr-8">
         <img
           src={logo}
@@ -87,7 +87,7 @@ const Navbar = () => {
         </ul>
       </nav>
       <button
-        className="block md:hidden text-black text-[1.5rem] hover:text-pink-400"
+        className="block  md:hidden text-black text-[1.5rem] hover:text-pink-400"
         onClick={toggleMenu}
         aria-label="Menu"
       >
@@ -101,10 +101,10 @@ const Navbar = () => {
 
       {isMenuOpen && (
         <div
-          className="absolute top-0 right-0 w-full h-full flex items-center justify-center"
+          className="absolute top-[80px] right-0 w-full h-[90%] flex items-center justify-center"
           onClick={toggleMenu}
         >
-          <div className="card w-full h-[80vh] p-10 bg-pink-400 text-white bg-opacity-70 z-50 backdrop-filter backdrop-blur-lg rounded-b-lg">
+          <div className="card w-full h-full p-10 bg-pink-400 text-white bg-opacity-70 z-50 backdrop-filter backdrop-blur-lg rounded-b-lg">
             <ul className="flex flex-col gap-10">
               <li>
                 <Link
