@@ -32,14 +32,14 @@ const Products = () => {
 
   if (status === STATUS.LOADING) {
     return (
-      <h2 className="text-4xl text-pink-500 flex w-full h-full items-center justify-center">
+      <h2 className="text-4xl text-pink-500 flex w-100 h-100 items-center justify-center">
         LOADING....
       </h2>
     );
   }
   if (status === STATUS.ERROR) {
     return (
-      <h2 className="text-4xl text-pink-500 flex w-full h-full items-center justify-center">
+      <h2 className="text-4xl text-pink-500 flex w-100 h-100 items-center justify-center">
         Something went wrong....
       </h2>
     );

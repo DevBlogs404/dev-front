@@ -54,9 +54,10 @@ const Home = () => {
         </div>
         <div
           className="grid grid-cols-2 col-span-2 gap-4 w-full h-full md:cursor-pointer"
-          onClick={() => navigate("/products/Sweaters")}
         >
-          <div className="relative md:cursor-pointer">
+          <div className="relative md:cursor-pointer"
+          onClick={() => navigate("/products/Sweaters")}
+          >
             <img
               src={image10}
               alt="image10"
