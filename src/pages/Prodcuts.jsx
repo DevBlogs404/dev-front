@@ -8,8 +8,9 @@ import {
   fetchProductsByCategory,
 } from "../store/productSlice";
 import { Toaster, toast } from "react-hot-toast";
-import { BiSearch } from "react-icons/all";
+import { BiSearch, GiDress } from "react-icons/all";
 import ProductCard from "../components/ProductCard";
+import CustomErrorPage from "../components/CustomErrorPage";
 
 
 const Products = () => {
@@ -23,6 +24,14 @@ const Products = () => {
       : dispatch(fetchProductsByCategory(category));
   }, [category, dispatch]);
 
+  // debouncing implemented
+  const onChange = (e)=>{
+    setTimeout(() => {
+      setSearch(e.target.value)
+    }, 1000);
+  }
+
+
   const { data: products, status } = useSelector((state) => state.product);
 
   const addItem = (item) => {
@@ -32,16 +41,18 @@ const Products = () => {
 
   if (status === STATUS.LOADING) {
     return (
-      <h2 className="text-4xl text-pink-500 flex w-100 h-100 items-center justify-center">
+    <div className=" flex flex-col w-100 h-[100vh] items-center justify-center">
+      <GiDress size={50} className=" text-pink-500 animate-bounce" />
+        <h2 className="text-4xl text-pink-500">
         LOADING....
-      </h2>
+        </h2>
+      </div>
+
     );
   }
   if (status === STATUS.ERROR) {
     return (
-      <h2 className="text-4xl text-pink-500 flex w-100 h-100 items-center justify-center">
-        Something went wrong....
-      </h2>
+      <CustomErrorPage />
     );
   }
 
@@ -55,7 +66,8 @@ const Products = () => {
             id="search"
             name="search"
             placeholder="Search product...."
-            onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
+            onChange={(e)=>onChange(e)
+            }
           />
           <div className="absolute top-3.5 right-3.5">
             <BiSearch size={30} className=" text-pink-400" />
@@ -65,8 +77,7 @@ const Products = () => {
       {products
         ?.filter(
           (product) =>
-            product.title.toLowerCase().includes(search) ||
-            product.description.toLowerCase().includes(search)
+            product.title.toLowerCase().includes(search)
         )
         .map((product) => (
             <ProductCard

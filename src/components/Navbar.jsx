@@ -91,11 +91,11 @@ const Navbar = () => {
         onClick={toggleMenu}
         aria-label="Menu"
       >
-        {isMenuOpen ? <BsX size={40} /> : <BiMenu size={40} />}
+        {isMenuOpen ? <BsX size={40} className="text-pink-500" /> : <BiMenu size={40} className="text-pink-500" />}
       </button>
       <div className="md:hidden">
         <Link to="/">
-          <h1 className="text-4xl font-bold text-pink-400 ml-4">Avira</h1>
+          <h1 className="text-3xl font-semibold text-pink-500 ml-4">Avira</h1>
         </Link>
       </div>
 

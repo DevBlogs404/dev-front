@@ -9,7 +9,7 @@ const About = () => {
           ABOUT US.
         </h1>
         <p
-          className="w-full mt-10 text-definedGrey text-lg break-words  md:max-w-[70%]"
+          className="w-full mt-2 md:mt-10 text-definedGrey text-lg break-words  md:max-w-[80%]"
           style={{ lineHeight: "24px" }}
         >
           Avira caters to thoughtful shoppers who appreciate unique designs and
@@ -17,27 +17,33 @@ const About = () => {
           curating fresh new collections and looking for the next big thing our
           customers will love. Founded in Vienna in 2019, we are proud to be
           your Online Clothing Shop that you can rely on for our expert service
-          and care. <br />
+          and care.
+        </p>
+        <p
+          className="w-full mt-2 md:mt-10 text-definedGrey text-lg break-words  md:max-w-[80%]"
+          style={{ lineHeight: "24px" }}
+        >
           We are here to serve you and make sure you find the Perfect Look for
           every occasion. Our passion for fashion is the reason why we are here.
           We absolutely love what we do, and our goal is to help our customers
           by providing them with unique outfit and accessories that make them
           stand-out from the crowd.
         </p>
+
         <div className="w-full flex flex-row items-center justify-center gap-4  md:gap-10 md:w-4/5 md:mt-20">
-          <div>
+          <div className="flex flex-col items-center justify-between">
             <p className="font-extrabold text-2xl md:text-5xl">50k+</p>
             <p className="font-extrabold text-xl text-pink-400 mt-4">
               Happy Customers
             </p>
           </div>
-          <div>
+          <div className="flex flex-col items-center justify-between">
             <p className="font-extrabold text-2xl md:text-5xl">60+</p>
             <p className="font-extrabold text-xl text-pink-400 mt-4">
               Partners
             </p>
           </div>
-          <div>
+          <div className="flex flex-col items-center justify-between">
             <p className="font-extrabold text-2xl md:text-5xl">5+</p>
             <p className="font-extrabold text-xl text-pink-400 mt-4">
               Years of Trust
