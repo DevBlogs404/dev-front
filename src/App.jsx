@@ -12,6 +12,7 @@ import SignIn from "./pages/SignIn";
 import LogIn from "./pages/LogIn";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
+import WishList from './pages/WishList'
 
 
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products/:category" element={<Prodcuts />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/wishlist" element={<WishList />} />
         </Routes>
       </Router>
     </Provider>

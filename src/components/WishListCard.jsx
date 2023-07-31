@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BsStarFill, BsHeartFill, BsHeart } from "react-icons/all";
+import { BsStarFill, BsHeartFill, BsHeart, ImCross } from "react-icons/all";
 
-const ProductCard = ({ product, addToCart, addItemToWishList }) => {
+const WishListCard = ({ product, addToCart, addItemToWishList, removeItem }) => {
   const navigate = useNavigate();
   // const [isLiked, setIsLiked] = useState(true);
 
@@ -52,8 +52,17 @@ const ProductCard = ({ product, addToCart, addItemToWishList }) => {
           )} */}
         </div>
       </div>
-      <div className="flex flex-col w-30 gap-2 my-2">
-        <h3 className="font-semibold text-xl">{product.title}</h3>
+      <div className="flex flex-col w-[40%] md:w-full gap-2  md:px-4 my-2">
+      <div className="flex items-center justify-between">
+            <h3 className="font-bold text-xl">{product.title}</h3>
+            <button
+              onClick={() => {
+                removeItem(product._id);
+              }}
+            >
+              <ImCross />
+            </button>
+          </div>
         <p className="text-gray-500">{product.description}</p>
         <div className="flex items-center justify-between">
           <div>
@@ -81,4 +90,4 @@ const ProductCard = ({ product, addToCart, addItemToWishList }) => {
   );
 };
 
-export default ProductCard;
+export default WishListCard;

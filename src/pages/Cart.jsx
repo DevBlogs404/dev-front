@@ -23,14 +23,10 @@ const Cart = () => {
   }, [cart]);
 
   const removeItem = (itemId) => {
-    dispatch(removeItemFromCart(itemId));
-    toast.success("item removed successfully");
+    dispatch(removeItemFromCart(itemId)) && toast.success("item removed successfully");
   };
   const clearCart = () => {
-    dispatch(clear());
-    localStorage.removeItem("cartItems");
-    toast.error("cart is empty");
-    navigate("/products/all");
+    dispatch(clear()) && localStorage.removeItem("cartItems") && toast.error("cart is empty") && navigate("/products/all");
   };
 
   return (

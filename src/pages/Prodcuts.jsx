@@ -11,6 +11,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { BiSearch, GiDress } from "react-icons/all";
 import ProductCard from "../components/ProductCard";
 import CustomErrorPage from "../components/CustomErrorPage";
+import {addItemToWishList} from '../store/wishListSlice'
 
 
 const Products = () => {
@@ -35,9 +36,13 @@ const Products = () => {
   const { data: products, status } = useSelector((state) => state.product);
 
   const addItem = (item) => {
-    dispatch(addItemToCart(item));
-    toast.success(`${item.title} added successfully`);
+    dispatch(addItemToCart(item)) && toast.success(`${item.title} added to Cart`);
   };
+
+  const addItemsToWishList = (item) =>{
+    dispatch(addItemToWishList(item)) && toast.success(`${item.title} added to WishList `);
+  }
+
 
   if (status === STATUS.LOADING) {
     return (
@@ -83,6 +88,7 @@ const Products = () => {
             <ProductCard
             product={product}
             addToCart={addItem}
+            addItemToWishList={addItemsToWishList}
             key={product._id}
           />
         ))}

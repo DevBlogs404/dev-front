@@ -172,6 +172,7 @@ const Navbar = () => {
                       <BiHeart
                         className="text-white cursor-pointer"
                         size={24}
+                        onClick={()=> navigate('/wishlist')}
                       />
                       WishList
                     </Link>
@@ -221,6 +222,7 @@ const Navbar = () => {
               <BiHeart
                 className="inline-block text-pink-400 cursor-pointer"
                 size={30}
+                onClick={()=> navigate('/wishlist')}
               />
             </span>
             <span>
