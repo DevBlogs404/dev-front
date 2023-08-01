@@ -1,8 +1,8 @@
 import React from "react";
-import image1 from "../assets/image1.png";
-import image6 from "../assets/image6.png";
-import image9 from "../assets/image9.png";
-import image10 from "../assets/image10.png";
+import image1 from "../assets/image1.webp";
+import image6 from "../assets/image6.webp";
+import image9 from "../assets/image9.webp";
+import image10 from "../assets/image10.webp";
 import { BsArrowRight } from "react-icons/all";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +19,6 @@ const Home = () => {
           <img
             src={image1}
             alt="image1"
-            loading="lazy"
             className="w-full h-full object-cover"
           />
           <div className="absolute top-6 left-6">
@@ -39,7 +38,6 @@ const Home = () => {
           <img
             src={image6}
             alt="image6"
-            loading="lazy"
             className="w-full h-full object-cover shadow-sm"
           />
           <div className="absolute top-6 left-6">
@@ -61,7 +59,6 @@ const Home = () => {
             <img
               src={image10}
               alt="image10"
-              loading="lazy"
               className="w-full h-full object-cover"
             />
             <div className="absolute top-6 left-6">
@@ -81,7 +78,6 @@ const Home = () => {
             <img
               src={image9}
               alt="image9"
-              loading="lazy"
               className="w-full h-full object-cover"
             />
             <div className="absolute top-6 left-6">

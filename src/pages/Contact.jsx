@@ -8,7 +8,7 @@ import {
   FaFacebook,
   BsTwitter,
 } from "react-icons/all";
-import draw from "../assets/draw.png";
+import draw from "../assets/draw.webp";
 
 const Contact = () => {
   return (
@@ -83,7 +83,6 @@ const Contact = () => {
         <img
           src={draw}
           alt="kit"
-          loading="lazy"
           className="hidden md:block absolute bottom-0 right-0"
         />
       </div>

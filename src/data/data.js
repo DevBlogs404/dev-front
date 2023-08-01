@@ -1,9 +1,9 @@
-import mens from "../assets/men.png";
-import women from "../assets/women.png";
-import shoes from "../assets/shoes.png";
-import kids from "../assets/kids.png";
-import accessories from "../assets/accessories.png";
-import beauty from "../assets/beauty.png";
+import mens from "../assets/men.webp";
+import women from "../assets/women.webp";
+import shoes from "../assets/shoes.webp";
+import kids from "../assets/kids.webp";
+import accessories from "../assets/accessories.webp";
+import beauty from "../assets/beauty.webp";
 
 
 export const CategoryOne = [

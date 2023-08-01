@@ -4,11 +4,11 @@ import { BsStarFill, BsHeartFill, BsHeart } from "react-icons/all";
 
 const ProductCard = ({ product, addToCart, addItemToWishList }) => {
   const navigate = useNavigate();
-  // const [isLiked, setIsLiked] = useState(true);
+  const [isLiked, setIsLiked] = useState(true);
 
-  // const toggleLike = () => {
-  //   setIsLiked(!isLiked);
-  // };
+  const toggleLike = () => {
+    setIsLiked(!isLiked);
+  };
 
 
   return (
@@ -21,8 +21,7 @@ const ProductCard = ({ product, addToCart, addItemToWishList }) => {
           src={product.images[0]}
           alt={product.title}
           className="w-full h-full object-cover rounded-lg"
-          loading="lazy"
-          // onClick={() => navigate(`/product/${product._id}`)}
+        // onClick={() => navigate(`/product/${product._id}`)}
         />
         <div className="absolute bottom-4 left-4 flex items-center gap-1">
           <BsStarFill
@@ -33,23 +32,25 @@ const ProductCard = ({ product, addToCart, addItemToWishList }) => {
         </div>
         <div
           className="absolute bottom-4 right-4 cursor-pointer"
-          onClick={()=>{addItemToWishList(product)}}
+          onClick={() => {
+            toggleLike()
+            addItemToWishList(product)
+          }
+          }
         >
-          <BsHeart
-              color="rgb(244 114 182) "
-              className="inline-block text-pink-400"
-            />
-          {/* {isLiked ? (
+          {isLiked ? (
             <BsHeart
               color="rgb(244 114 182) "
               className="inline-block text-pink-400"
             />
-          ) : (
-            <BsHeartFill
-              color="rgb(244 114 182) "
-              className="inline-block text-pink-400"
-            />
-          )} */}
+          )
+            :
+            (
+              <BsHeartFill
+                color="rgb(244 114 182) "
+                className="inline-block text-pink-400"
+              />
+            )}
         </div>
       </div>
       <div className="flex flex-col w-30 gap-2 my-2">

@@ -1,15 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { BsStarFill, BsHeartFill, BsHeart, ImCross } from "react-icons/all";
+import { BsStarFill, ImCross } from "react-icons/all";
 
 const WishListCard = ({ product, addToCart, addItemToWishList, removeItem }) => {
-  const navigate = useNavigate();
-  // const [isLiked, setIsLiked] = useState(true);
-
-  // const toggleLike = () => {
-  //   setIsLiked(!isLiked);
-  // };
-
+  // const navigate = useNavigate();
 
   return (
     <div
@@ -21,8 +15,7 @@ const WishListCard = ({ product, addToCart, addItemToWishList, removeItem }) => 
           src={product.images[0]}
           alt={product.title}
           className="w-full h-full object-cover rounded-lg"
-          loading="lazy"
-          // onClick={() => navigate(`/product/${product._id}`)}
+        // onClick={() => navigate(`/product/${product._id}`)}
         />
         <div className="absolute bottom-4 left-4 flex items-center gap-1">
           <BsStarFill
@@ -31,38 +24,18 @@ const WishListCard = ({ product, addToCart, addItemToWishList, removeItem }) => 
           />
           <span className="text-sm">{product.rating}</span>
         </div>
-        <div
-          className="absolute bottom-4 right-4 cursor-pointer"
-          onClick={()=>{addItemToWishList(product)}}
-        >
-          <BsHeart
-              color="rgb(244 114 182) "
-              className="inline-block text-pink-400"
-            />
-          {/* {isLiked ? (
-            <BsHeart
-              color="rgb(244 114 182) "
-              className="inline-block text-pink-400"
-            />
-          ) : (
-            <BsHeartFill
-              color="rgb(244 114 182) "
-              className="inline-block text-pink-400"
-            />
-          )} */}
-        </div>
       </div>
       <div className="flex flex-col w-[40%] md:w-full gap-2  md:px-4 my-2">
-      <div className="flex items-center justify-between">
-            <h3 className="font-bold text-xl">{product.title}</h3>
-            <button
-              onClick={() => {
-                removeItem(product._id);
-              }}
-            >
-              <ImCross />
-            </button>
-          </div>
+        <div className="flex items-center justify-between">
+          <h3 className="font-bold text-xl">{product.title}</h3>
+          <button
+            onClick={() => {
+              removeItem(product._id);
+            }}
+          >
+            <ImCross />
+          </button>
+        </div>
         <p className="text-gray-500">{product.description}</p>
         <div className="flex items-center justify-between">
           <div>

@@ -24,7 +24,6 @@ const CartCard = ({ item, removeItem }) => {
           src={item.images[0]}
           alt={item.title}
           className="max-w-2/3 max-h-60 object-cover"
-          loading="lazy"
         />
         <div className="h-full w-full flex flex-col gap-4 ">
           <div className="flex items-center justify-between">

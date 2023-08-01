@@ -13,7 +13,7 @@ import {
   BiInfoCircle,
   BsX,
 } from "react-icons/all";
-import logo from "../assets/Logo.svg";
+import logo from "../assets/Logo.webp";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,7 +47,6 @@ const Navbar = () => {
           alt="logo"
           className="w-20 object-cover cursor-pointer"
           onClick={() => navigate("/")}
-          loading="lazy"
         />
       </Link>
       <nav className="hidden md:flex items-center justify-center gap-8 w-full h-full">

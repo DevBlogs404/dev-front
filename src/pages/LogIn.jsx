@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import LeftSection from "../assets/LeftSection.png";
+import LeftSection from "../assets/LeftSection.webp";
 import { Link, useNavigate } from "react-router-dom";
 import {toast, Toaster} from 'react-hot-toast'
 
@@ -40,7 +40,6 @@ const LogIn = () => {
           src={LeftSection}
           alt="LeftSection"
           className="h-full w-full object-cover"
-          loading="lazy"
         />
       </div>
       <div className="flex-1 h-full w-full">

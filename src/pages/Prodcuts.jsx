@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../store/cartSlice";
@@ -11,7 +11,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { BiSearch, GiDress } from "react-icons/all";
 import ProductCard from "../components/ProductCard";
 import CustomErrorPage from "../components/CustomErrorPage";
-import {addItemToWishList} from '../store/wishListSlice'
+import { addItemToWishList } from '../store/wishListSlice'
 
 
 const Products = () => {
@@ -26,7 +26,12 @@ const Products = () => {
   }, [category, dispatch]);
 
   // debouncing implemented
-  const onChange = (e)=>{
+  useEffect(() => {
+    onchange
+    return () => clearTimeout()
+  }, [])
+
+  const onChange = (e) => {
     setTimeout(() => {
       setSearch(e.target.value)
     }, 1000);
@@ -39,17 +44,17 @@ const Products = () => {
     dispatch(addItemToCart(item)) && toast.success(`${item.title} added to Cart`);
   };
 
-  const addItemsToWishList = (item) =>{
+  const addItemsToWishList = (item) => {
     dispatch(addItemToWishList(item)) && toast.success(`${item.title} added to WishList `);
   }
 
 
   if (status === STATUS.LOADING) {
     return (
-    <div className=" flex flex-col w-100 h-[100vh] items-center justify-center">
-      <GiDress size={50} className=" text-pink-500 animate-bounce" />
+      <div className=" flex flex-col w-100 h-[100vh] items-center justify-center">
+        <GiDress size={50} className=" text-pink-500 animate-bounce" />
         <h2 className="text-4xl text-pink-500">
-        LOADING....
+          LOADING....
         </h2>
       </div>
 
@@ -57,7 +62,7 @@ const Products = () => {
   }
   if (status === STATUS.ERROR) {
     return (
-      <CustomErrorPage />
+      <CustomErrorPage title={"404"} description={"Something went wrong"} />
     );
   }
 
@@ -71,7 +76,7 @@ const Products = () => {
             id="search"
             name="search"
             placeholder="Search product...."
-            onChange={(e)=>onChange(e)
+            onChange={(e) => onChange(e)
             }
           />
           <div className="absolute top-3.5 right-3.5">
@@ -85,7 +90,7 @@ const Products = () => {
             product.title.toLowerCase().includes(search)
         )
         .map((product) => (
-            <ProductCard
+          <ProductCard
             product={product}
             addToCart={addItem}
             addItemToWishList={addItemsToWishList}

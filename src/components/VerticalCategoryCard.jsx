@@ -11,7 +11,6 @@ const VerticalCategoryCard = ({title,imageUrl}) => {
       src={imageUrl}
       alt="mens"
       className="w-full h-full object-cover"
-      loading="lazy"
     />
     <div className="absolute top-6 left-6">
       <div className="text-lg mt-2 font-bold  bg-[rgb(255,255,255,0.3)] pointer-events-none p-2 px-4  md:text-xl">

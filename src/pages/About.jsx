@@ -1,5 +1,5 @@
 import React from "react";
-import aboutImage from "../assets/aboutImage.png";
+import aboutImage from "../assets/aboutImage.webp";
 
 const About = () => {
   return (
@@ -55,7 +55,6 @@ const About = () => {
         <img
           src={aboutImage}
           className="w-full h-full object-cover"
-          loading="lazy"
           alt="aboutImage"
         />
       </div>
