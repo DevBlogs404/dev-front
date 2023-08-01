@@ -10,6 +10,7 @@ import CustomErrorPage from "../components/CustomErrorPage";
 const WishList = () => {
 
   const wishList = useSelector((state) => state.wishList);
+  console.log(wishList.wishListItems);
   const dispatch = useDispatch();
 
   // add item to cart
@@ -32,12 +33,20 @@ const WishList = () => {
 
   return (
     <div className="flex flex-col w-full h-full gap-6 p-6 md:flex-row md:items-center md:justify-center md:flex-wrap md:gap-10 md:p-10">
-      {
+      {/* {
           wishList.wishListItems > 0 ? wishList.wishListItems?.map((item) => {
           return (
             <WishListCard key={item._id} product={item} addToCart={addItem} addItemToWishList={addItemsToWishList} removeItem={removeItemsFromWish} />
           )
       }) : <CustomErrorPage title={"Oops"} description={"No items in WishList"} />
+      }
+       */}
+       {
+          wishList.wishListItems.length > 0 ? wishList.wishListItems?.map((item) => {
+          return (
+            <WishListCard key={item._id} product={item} addToCart={addItem} addItemToWishList={addItemsToWishList} removeItem={removeItemsFromWish} />
+          )
+      }) : <CustomErrorPage title={"Oops"} description={" No items in wishlist"} />
       }
       <Toaster position="bottom-center" />
 
