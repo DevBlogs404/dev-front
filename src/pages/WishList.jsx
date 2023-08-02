@@ -5,12 +5,11 @@ import { addItemToCart } from "../store/cartSlice";
 import { removeItemFromWishList, addItemToWishList } from "../store/wishListSlice";
 import { Toaster, toast } from "react-hot-toast";
 import WishListCard from "../components/WishListCard";
-import CustomErrorPage from "../components/CustomErrorPage";
+import CustomErrorComponent from "../components/CustomErrorComponent";
 
 const WishList = () => {
 
   const wishList = useSelector((state) => state.wishList);
-  console.log(wishList.wishListItems);
   const dispatch = useDispatch();
 
   // add item to cart
@@ -32,7 +31,7 @@ const WishList = () => {
 
 
   return (
-    <div className="flex flex-col w-full h-full gap-6 p-6 md:flex-row md:items-center md:justify-center md:flex-wrap md:gap-10 md:p-10">
+    <div className="flex flex-col w-full h-full gap-6 p-4 md:flex-row md:items-center md:justify-center md:flex-wrap md:gap-10 md:p-10">
       {/* {
           wishList.wishListItems > 0 ? wishList.wishListItems?.map((item) => {
           return (
@@ -46,7 +45,7 @@ const WishList = () => {
           return (
             <WishListCard key={item._id} product={item} addToCart={addItem} addItemToWishList={addItemsToWishList} removeItem={removeItemsFromWish} />
           )
-      }) : <CustomErrorPage title={"Oops"} description={" No items in wishlist"} />
+      }) : <CustomErrorComponent title={"Oops"} description={" No items in wishlist"} />
       }
       <Toaster position="bottom-center" />
 

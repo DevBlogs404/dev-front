@@ -10,10 +10,10 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full h-full p-10">
+    <div className="w-full min-h-full p-4 md:p-10">
       <div className="grid grid-cols-1 w-full h-full  md:grid-cols-3 grid-rows-2 gap-4  md:cursor-pointer">
         <div
-          className="row-span-2 relative"
+          className="row-span-2 col-span-2 md:col-span-1 w-full relative"
           onClick={() => navigate("/products/all")}
         >
           <img

@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { BiError, BsArrowLeft } from "react-icons/all";
 
-const CustomErrorPage = ({ title, description }) => {
+const CustomErrorComponent = ({ title, description }) => {
   return (
-    <div className="flex flex-col h-[100vh] gap-5 items-center justify-center md:flex-row">
+    <div className="flex flex-col h-[50vh] gap-5 items-center justify-center md:flex-row">
       <h2 className="text-4xl md:text-6xl font-bold text-pink-500 align-bottom">{title}</h2>
       <div className="hidden md:block md:w-1 md:h-16 md:bg-gray-500"></div>
       <div className="flex flex-col gap-5 items-center justify-center">
@@ -21,4 +21,4 @@ const CustomErrorPage = ({ title, description }) => {
   )
 }
 
-export default CustomErrorPage
+export default CustomErrorComponent

@@ -10,7 +10,7 @@ import {
 import { Toaster, toast } from "react-hot-toast";
 import { BiSearch, GiDress } from "react-icons/all";
 import ProductCard from "../components/ProductCard";
-import CustomErrorPage from "../components/CustomErrorPage";
+import CustomErrorComponent from "../components/CustomErrorComponent";
 import { addItemToWishList } from '../store/wishListSlice'
 
 
@@ -62,7 +62,7 @@ const Products = () => {
   }
   if (status === STATUS.ERROR) {
     return (
-      <CustomErrorPage title={"404"} description={"Something went wrong"} />
+      <CustomErrorComponent title={"404"} description={"Something went wrong"} />
     );
   }
 
@@ -97,7 +97,7 @@ const Products = () => {
             key={product._id}
           />
         ))}
-      <Toaster />
+      <Toaster position="bottom-center" />
     </div>
   );
 };

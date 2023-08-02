@@ -5,8 +5,7 @@ import { CategoryOne, CategoryTwo, CategoryThree } from "../data/data";
 
 const Shop = () => {
   return (
-    <>
-      <div className="w-full h-[90vh] p-4 md:p-10">
+      <div className="w-full min-h-[90vh] p-4 md:p-10">
         <div className="flex flex-col w-full h-full gap-4 mt-2">
           <div className="uppercase pointer-events-none text-left text-2xl font-semibold">
             Shop by Category
@@ -48,7 +47,6 @@ const Shop = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

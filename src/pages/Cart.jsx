@@ -101,7 +101,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      <Toaster />
+      <Toaster position="bottom-center" />
     </div>
   );
 };

@@ -11,7 +11,8 @@ export default {
       },
       textColor:{
         'definedGrey':"#737373"
-      }
+      },
+
     },
   },
   plugins: [],
