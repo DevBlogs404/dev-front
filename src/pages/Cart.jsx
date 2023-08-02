@@ -26,7 +26,9 @@ const Cart = () => {
     dispatch(removeItemFromCart(itemId)) && toast.success("item removed successfully");
   };
   const clearCart = () => {
-    dispatch(clear()) && localStorage.removeItem("cartItems") && toast.error("cart is empty") && navigate("/products/all");
+    dispatch(clear())
+     localStorage.removeItem("cartItems")
+     navigate("/products/all");
   };
 
   return (
@@ -63,9 +65,7 @@ const Cart = () => {
           <div className="w-full h-20 bg-gray-100 rounded-md flex items-center justify-center">
             <BsTruck size={40} className="mr-4" />
             <span>
-              {totalAmount > 1200
-                ? "Yay! No Delivery Charge On This Order."
-                : "Delivery Charges Applied!"}
+              {totalAmount === 0 && totalAmount < 1200 ? "Delivery Charges Applied!" : "Yay! No Delivery Charge On This Order." }
             </span>
           </div>
           <div className="flex flex-col gap-8">

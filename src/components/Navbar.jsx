@@ -40,7 +40,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="w-full  h-[80px]  flex items-center justify-between  md:justify-between px-4 shadow-md">
+    <header className="w-full z-50 h-[60px]  md:h-[80px]  flex items-center justify-between  md:justify-between px-4 shadow-md">
       <Link to="/" className="hidden md:block md:mr-8">
         <img
           src={logo}
@@ -90,17 +90,17 @@ const Navbar = () => {
         onClick={toggleMenu}
         aria-label="Menu"
       >
-        {isMenuOpen ? <BsX size={40} className="text-pink-500" /> : <BiMenu size={40} className="text-pink-500" />}
+        {isMenuOpen ? <BsX size={34} className="text-pink-500" /> : <BiMenu size={34} className="text-pink-500" />}
       </button>
       <div className="md:hidden">
         <Link to="/">
-          <h1 className="text-3xl font-semibold text-pink-500 ml-4">Avira</h1>
+          <h1 className="text-2xl font-semibold text-pink-500 mr-24">Avira</h1>
         </Link>
       </div>
 
       {isMenuOpen && (
         <div
-          className=" absolute top-[80px]  right-0 w-full h-[90%] flex items-center justify-center"
+          className="absolute top-[60px]  right-0 w-full h-full flex items-center justify-center"
           onClick={toggleMenu}
         >
           <div className="card w-full h-full  p-10 bg-pink-400 text-white bg-opacity-70 z-50 backdrop-filter backdrop-blur-lg rounded-b-lg">
@@ -213,21 +213,21 @@ const Navbar = () => {
             <span>
               <BiCart
                 className="inline-block text-pink-400 cursor-pointer"
-                size={30}
+                size={26}
                 onClick={navigateCart}
               />
             </span>
             <span>
               <BiHeart
                 className="inline-block text-pink-400 cursor-pointer"
-                size={30}
+                size={26}
                 onClick={()=> navigate('/wishlist')}
               />
             </span>
             <span>
               <BiLogOut
                 className="inline-block text-pink-400 font-bold cursor-pointer"
-                size={30}
+                size={26}
                 onClick={logOut}
               />
             </span>
@@ -237,7 +237,7 @@ const Navbar = () => {
             className="block text-pink-400 font-bold cursor-pointer"
             onClick={() => navigate("/login")}
           >
-            <BiUser className="inline-block text-pink-400 md:mr-2" size={30} />
+            <BiUser className="inline-block text-pink-400 md:mr-2" size={26} />
           </span>
         )}
       </div>

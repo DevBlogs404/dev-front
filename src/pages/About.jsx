@@ -1,5 +1,5 @@
 import React from "react";
-import aboutImage from "../assets/aboutImage.webp";
+import aboutImage from '../assets/aboutImage.webp'
 
 const About = () => {
   return (

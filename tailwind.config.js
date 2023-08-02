@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage:{
-        'aboutBg' :"url('../src/assets/aboutImage.png')"
+        'aboutBg' :"url('../src/assets/aboutImage.webp')"
       },
       textColor:{
         'definedGrey':"#737373"
