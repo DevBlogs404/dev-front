@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense, useMemo, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../store/cartSlice";
@@ -9,9 +9,10 @@ import {
 } from "../store/productSlice";
 import { Toaster, toast } from "react-hot-toast";
 import { BiSearch, GiDress } from "react-icons/all";
-import ProductCard from "../components/ProductCard";
-import CustomErrorComponent from "../components/CustomErrorComponent";
 import { addItemToWishList } from '../store/wishListSlice'
+import Loading from "../components/Loading";
+const ProductCard = lazy(() => import('../components/ProductCard'))
+const CustomErrorComponent = lazy(() => import('../components/CustomErrorComponent'))
 
 
 const Products = () => {
@@ -19,26 +20,27 @@ const Products = () => {
   const { category } = useParams();
   const dispatch = useDispatch();
 
+  const { data: products } = useSelector((state) => state.product);
+  const status = useSelector((state) => state.product.status)
+
   useEffect(() => {
     category === "all"
       ? dispatch(fetchProducts())
       : dispatch(fetchProductsByCategory(category));
   }, [category, dispatch]);
 
+  const onchange = (e) => {
+    setTimeout(() => {
+     setSearch(e.target.value);
+    }, 1000);
+   };
+
   // debouncing implemented
   useEffect(() => {
-    onchange
-    return () => clearTimeout()
-  }, [])
+    const timeout  = onchange  
+    return () => clearTimeout(timeout)
+  }, [search])
 
-  const onChange = (e) => {
-    setTimeout(() => {
-      setSearch(e.target.value)
-    }, 1000);
-  }
-
-
-  const { data: products, status } = useSelector((state) => state.product);
 
   const addItem = (item) => {
     dispatch(addItemToCart(item)) && toast.success(`${item.title} added to Cart`);
@@ -47,6 +49,10 @@ const Products = () => {
   const addItemsToWishList = (item) => {
     dispatch(addItemToWishList(item)) && toast.success(`${item.title} added to WishList `);
   }
+
+  const filteredProducts = search ? products.filter((products)=>
+    products.title.toLowerCase().includes(search.toLowerCase())
+  ) : products ;
 
 
   if (status === STATUS.LOADING) {
@@ -62,7 +68,9 @@ const Products = () => {
   }
   if (status === STATUS.ERROR) {
     return (
-      <CustomErrorComponent title={"404"} description={"Something went wrong"} />
+      <Suspense fallback={<Loading />}>
+        <CustomErrorComponent title={"404"} description={"Something went wrong"} />
+      </Suspense>
     );
   }
 
@@ -76,7 +84,7 @@ const Products = () => {
             id="search"
             name="search"
             placeholder="Search product...."
-            onChange={(e) => onChange(e)
+            onChange={(e)=>onchange(e)
             }
           />
           <div className="absolute top-3.5 right-3.5">
@@ -84,19 +92,32 @@ const Products = () => {
           </div>
         </div>
       </div>
-      {products
-        ?.filter(
-          (product) =>
-            product.title.toLowerCase().includes(search)
-        )
-        .map((product) => (
-          <ProductCard
-            product={product}
-            addToCart={addItem}
-            addItemToWishList={addItemsToWishList}
-            key={product._id}
-          />
-        ))}
+
+
+      <Suspense fallback={<Loading />}>
+        {/* {products
+          ?.filter(
+            (product) =>
+              product.title.toLowerCase().includes(search)
+          )
+          .map((product) => (
+            <ProductCard
+              product={product}
+              addToCart={addItem}
+              addItemToWishList={addItemsToWishList}
+              key={product._id}
+            />
+          ))} */}
+          {filteredProducts
+          .map((product) => (
+            <ProductCard
+              product={product}
+              addToCart={addItem}
+              addItemToWishList={addItemsToWishList}
+              key={product._id}
+            />
+          ))}
+      </Suspense>
       <Toaster position="bottom-center" />
     </div>
   );

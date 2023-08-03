@@ -14,9 +14,9 @@ const CustomErrorComponent = ({ title, description }) => {
         </h2>
       </div>
       <div className='w-full flex gap-4 items-center justify-center  absolute bottom-32 md:bottom-64'>
-        <BsArrowLeft  size={20} />
-         <Link to="/">Go Back to Home Page</Link>
-         </div>
+        <BsArrowLeft size={20} />
+        <Link to="/">Go Back to Home Page</Link>
+      </div>
     </div>
   )
 }

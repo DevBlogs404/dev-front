@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useCallback, useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
 import LeftSection from "../assets/LeftSection.webp";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,7 +7,14 @@ import {toast, Toaster} from 'react-hot-toast'
 const LogIn = () => {
   const navigate = useNavigate();
 
-  const logInUser = async (userData) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const logInUser = useCallback(async (userData) => {
     let response = await fetch("https://dev-back.vercel.app/api/v1/auth/login", {
       method: "POST",
       body: JSON.stringify(userData),
@@ -23,15 +30,8 @@ const LogIn = () => {
     }else{
       toast.error("No User Found")
     }
-    
-  };
+  },[navigate])
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
 
   return (
     <div className="flex flex-col w-full h-full gap-6 p-4 md:flex-row md:p-10 md:gap-10">

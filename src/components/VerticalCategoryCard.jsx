@@ -2,10 +2,13 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 const VerticalCategoryCard = ({title,imageUrl}) => {
   const navigate = useNavigate();
+  const handleClick = ()=>{
+    navigate(`/products/${title.toLowerCase()}`)
+  }
   return (
     <div
     className="w-full h-full relative md:cursor-pointer"
-    onClick={() => navigate(`/products/${title.toLowerCase()}`)}
+    onClick={handleClick}
   >
     <img
       src={imageUrl}

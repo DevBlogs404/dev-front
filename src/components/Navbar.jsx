@@ -39,6 +39,16 @@ const Navbar = () => {
     setIsMenuOpen(false); // Close the menu after clicking an option
   };
 
+  const navigateHome = ()=>{
+    navigate('/')
+  }
+  const navigateLogin = ()=>{
+    navigate('/login')
+  }
+  const navigateWishList = ()=>{
+    navigate('/wishlist')
+  }
+
   return (
     <header className="w-full z-50 h-[60px]  md:h-[80px]  flex items-center justify-between  md:justify-between px-4 shadow-md">
       <Link to="/" className="hidden md:block md:mr-8">
@@ -46,7 +56,7 @@ const Navbar = () => {
           src={logo}
           alt="logo"
           className="w-20 object-cover cursor-pointer"
-          onClick={() => navigate("/")}
+          onClick={navigateHome}
         />
       </Link>
       <nav className="hidden md:flex items-center justify-center gap-8 w-full h-full">
@@ -165,13 +175,13 @@ const Navbar = () => {
                   </li>
                   <li>
                     <Link
+                      to='/wishlist'
                       className="flex items-center justify-start gap-6 text-white text-3xl"
                       onClick={handleOptionClick}
                     >
                       <BiHeart
                         className="text-white cursor-pointer"
                         size={24}
-                        onClick={()=> navigate('/wishlist')}
                       />
                       WishList
                     </Link>
@@ -221,7 +231,7 @@ const Navbar = () => {
               <BiHeart
                 className="inline-block text-pink-400 cursor-pointer"
                 size={26}
-                onClick={()=> navigate('/wishlist')}
+                onClick={navigateWishList}
               />
             </span>
             <span>
@@ -235,7 +245,7 @@ const Navbar = () => {
         ) : (
           <span
             className="block text-pink-400 font-bold cursor-pointer"
-            onClick={() => navigate("/login")}
+            onClick={navigateLogin}
           >
             <BiUser className="inline-block text-pink-400 md:mr-2" size={26} />
           </span>

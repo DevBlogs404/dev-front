@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addItemToCart } from "../store/cartSlice";
 import { removeItemFromWishList, addItemToWishList } from "../store/wishListSlice";
 import { Toaster, toast } from "react-hot-toast";
-import WishListCard from "../components/WishListCard";
-import CustomErrorComponent from "../components/CustomErrorComponent";
+const WishListCard = lazy(()=> import('../components/WishListCard'))
+const CustomErrorComponent = lazy(()=> import('../components/CustomErrorComponent'))
+import Loading from '../components/Loading'
+
 
 const WishList = () => {
 
@@ -25,9 +26,9 @@ const WishList = () => {
   
 
    // add item to wishlist
-  const addItemsToWishList = (item) => {
-    dispatch(addItemToWishList(item)) && toast.success(`${item.title} added to WishList `);
-  }
+  // const addItemsToWishList = (item) => {
+  //   dispatch(addItemToWishList(item)) && toast.success(`${item.title} added to WishList `);
+  // }
 
 
   return (
@@ -40,14 +41,16 @@ const WishList = () => {
       }) : <CustomErrorPage title={"Oops"} description={"No items in WishList"} />
       }
        */}
+       <Suspense fallback={<Loading />}>
        {
           wishList.wishListItems.length > 0 ? wishList.wishListItems?.map((item) => {
           return (
-            <WishListCard key={item._id} product={item} addToCart={addItem} addItemToWishList={addItemsToWishList} removeItem={removeItemsFromWish} />
+            <WishListCard key={item._id} product={item} addToCart={addItem}  removeItem={removeItemsFromWish} />
           )
       }) : <CustomErrorComponent title={"Oops"} description={" No items in wishlist"} />
       }
       <Toaster position="bottom-center" />
+      </Suspense>
 
     </div>
   )

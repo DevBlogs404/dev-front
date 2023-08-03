@@ -1,7 +1,8 @@
-import React from "react";
-import VerticalCategoryCard from "../components/VerticalCategoryCard";
-import SquareCategoryCard from "../components/SquareCategoryCard";
+import React,{lazy,Suspense} from "react";
+const SquareCategoryCard = lazy(()=> import('../components/SquareCategoryCard'))
+const VerticalCategoryCard = lazy(()=> import('../components/VerticalCategoryCard'))
 import { CategoryOne, CategoryTwo, CategoryThree } from "../data/data";
+import Loading from "../components/Loading";
 
 const Shop = () => {
   return (
@@ -11,6 +12,7 @@ const Shop = () => {
             Shop by Category
           </div>
           <div className="grid grid-cols-1 gap-4 w-full h-full md:grid-cols-4 md:gap-8">
+            <Suspense fallback={<Loading />}>
             {CategoryOne?.map((category) => {
               return (
                 <VerticalCategoryCard
@@ -20,8 +22,10 @@ const Shop = () => {
                 />
               );
             })}
+            </Suspense>
 
             <div className="flex flex-col gap-4 h-full">
+            <Suspense fallback={<Loading />}>
             {CategoryTwo?.map((category) => {
               return (
                 <SquareCategoryCard
@@ -31,9 +35,11 @@ const Shop = () => {
                 />
               );
             })}
+               </Suspense>
             </div>
 
             <div className="flex flex-col gap-4 h-full">
+            <Suspense fallback={<Loading />}>
             {CategoryThree?.map((category) => {
               return (
                 <SquareCategoryCard
@@ -43,6 +49,7 @@ const Shop = () => {
                 />
               );
             })}
+               </Suspense>
             </div>
           </div>
         </div>

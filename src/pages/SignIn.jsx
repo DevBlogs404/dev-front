@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useCallback} from "react";
 import { useForm } from "react-hook-form";
 import LeftSection from "../assets/LeftSection.webp";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ const SignIn = () => {
     formState: { errors },
   } = useForm();
 
-  const registerUser = async (userData) => {
+  const registerUser = useCallback(async (userData) => {
     let { email, password } = userData;
     let response = await fetch("https://dev-back.vercel.app/api/v1/auth/register", {
       method: "POST",
@@ -22,9 +22,9 @@ const SignIn = () => {
       },
     });
     response = await response.json();
-
     navigate("/login");
-  };
+  },[navigate])
+  
   return (
     <div className="flex flex-col w-full h-full gap-4 p-4 md:flex-row md:p-10 md:gap-10">
       <div className="flex-1 relative h-full w-full  flex items-start justify-center  flex-col gap-4  md:gap-8 ">

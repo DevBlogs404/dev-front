@@ -1,9 +1,7 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { memo } from "react";
 import { BsStarFill, ImCross } from "react-icons/all";
 
 const WishListCard = ({ product, addToCart, addItemToWishList, removeItem }) => {
-  // const navigate = useNavigate();
 
   return (
     <div
@@ -63,4 +61,4 @@ const WishListCard = ({ product, addToCart, addItemToWishList, removeItem }) => 
   );
 };
 
-export default WishListCard;
+export default memo(WishListCard);

@@ -1,45 +1,57 @@
-import React, {  useEffect } from "react";
+import React, { useCallback, useEffect, useMemo, lazy, Suspense } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi";
 import { BsTruck } from "react-icons/all";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItemFromCart, totalPrice, clear } from "../store/cartSlice";
 import { toast, Toaster } from "react-hot-toast";
-import CartCard from "../components/CartCard";
+import Loading from "../components/Loading";
+
+const CartCard = lazy(() => import('../components/CartCard'))
 
 const Cart = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const deliveryPrice = 40;
+
   const totalQuantity = cart.cartTotalQuantity;
   const totalItemsPrice = cart.cartTotalAmount;
   const totalDiscount = cart.cartTotalDiscount;
+
+  const deliveryPrice = 40;
   const delivery = totalQuantity * deliveryPrice;
-  const totalAmount = totalItemsPrice - totalDiscount + delivery;
+  
+  // // Memoizing calculations using useMemo
+  // const totalAmount = useMemo(() => {
+  //   return totalItemsPrice - totalDiscount + delivery;
+  // }, [totalItemsPrice, totalDiscount, delivery]);
+  
+  const totalAmount = totalItemsPrice - totalDiscount >= 1200 ? totalItemsPrice - totalDiscount : totalItemsPrice - totalDiscount + delivery
+
 
   useEffect(() => {
     dispatch(totalPrice());
   }, [cart]);
 
+
+
   const removeItem = (itemId) => {
     dispatch(removeItemFromCart(itemId)) && toast.success("item removed successfully");
   };
+
   const clearCart = () => {
     dispatch(clear())
-     localStorage.removeItem("cartItems")
-     navigate("/products/all");
+    localStorage.removeItem("cartItems")
+    navigate("/products/all");
   };
 
   return (
     <div className="w-full h-full p-4 flex flex-col gap-4 items-center justify-between md:flex-row md:p-10 md:gap-0">
       <div className="w-full h-full flex-1">
         <div className="flex items-center justify-between">
-          <div className="flex items-center justify-center font-bold uppercase text-xl">
+          <div className="flex items-center justify-center font-bold uppercase text-xl cursor-pointer" onClick={() => navigate("/products/all")}>
             <BiLeftArrowAlt
               size={40}
-              className="cursor-pointer"
-              onClick={() => navigate("/products/all")}
             />{" "}
             Order Summary - {cart.cartItems.length}
             {cart.cartItems.length > 1 ? " items" : " item"}
@@ -53,11 +65,13 @@ const Cart = () => {
             </button>
           )}
         </div>
-        {cart.cartItems.map((item) => {
-          return (
-            <CartCard item={item} removeItem={removeItem} key={item._id} />
-          );
-        })}
+        <Suspense fallback={<Loading />}>
+          {cart.cartItems.map((item) => {
+            return (
+              <CartCard item={item} removeItem={removeItem} key={item._id} />
+            );
+          })}
+        </Suspense>
       </div>
 
       <div className="w-full h-full flex-1">
@@ -65,7 +79,7 @@ const Cart = () => {
           <div className="w-full h-20 bg-gray-100 rounded-md flex items-center justify-center">
             <BsTruck size={40} className="mr-4" />
             <span>
-              {totalAmount === 0 && totalAmount < 1200 ? "Delivery Charges Applied!" : "Yay! No Delivery Charge On This Order." }
+              {totalAmount === 0 && totalAmount < 1200 ? "Delivery Charges Applied!" : "Yay! No Delivery Charge On This Order."}
             </span>
           </div>
           <div className="flex flex-col gap-8">

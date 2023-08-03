@@ -10,6 +10,15 @@ const ProductCard = ({ product, addToCart, addItemToWishList }) => {
     setIsLiked(!isLiked);
   };
 
+  const handleAddToWishList = ()=>{
+    toggleLike()
+    addItemToWishList(product)
+  }
+
+  const handleAddToCart = ()=>{
+      addToCart(product);
+  }
+
 
   return (
     <div
@@ -32,11 +41,7 @@ const ProductCard = ({ product, addToCart, addItemToWishList }) => {
         </div>
         <div
           className="absolute bottom-4 right-4 cursor-pointer"
-          onClick={() => {
-            toggleLike()
-            addItemToWishList(product)
-          }
-          }
+          onClick={handleAddToWishList}
         >
           {isLiked ? (
             <BsHeart
@@ -72,9 +77,7 @@ const ProductCard = ({ product, addToCart, addItemToWishList }) => {
       </div>
       <button
         className="p-2  w-40 bg-black text-white rounded-lg font-bold"
-        onClick={() => {
-          addToCart(product);
-        }}
+        onClick={handleAddToCart}
       >
         Add to Cart
       </button>
